@@ -22,7 +22,6 @@ htd[t_,d_]:=1.005 t+(2500+1.84 t) d/1000
 dp[pq_]:=622 pq/(B-pq)
 Pqb[t_]:=Piecewise[{{Exp[c8/T[t]+c9+c10 T[t]+c11 T[t]^2+c12 T[t]^3] T[t]^c13,0<=t<200},
 	{Exp[c1/T[t]+c2+c3 T[t]+c4 T[t]^2+c5 T[t]^3+c6 T[t]^4] T[t]^c7,-100<t<0}}]
-trans[{d_,h_}]:={d,h-d Tan[68\[Degree]]}
 
 
 psy[a_->x_,b_->y_]:=Block[{setvalue=Piecewise[{{x,If[Head@a===String,a,ToString@HoldForm@a]==#},
@@ -55,6 +54,7 @@ SetAttributes[psy,HoldAll]
 
 plotrange={{0,40},{-30,70}};
 regfun=Function[{d,h},0<d<dp[Pqb[InverseFunction[htd[#,d]&][h+d Tan[68\[Degree]]]]]];
+trans[{d_,h_}]:={d,h-d Tan[68\[Degree]]}
 
 psychrometric=Show[
 	ParametricPlot[Table[trans@{d,htd[t,d]},{t,-30,70,5}],{d,-50,50},RegionFunction->regfun,PlotStyle->Blue],
@@ -87,5 +87,5 @@ psy["h"->(pt1["h"]*ratio+pt2["h"]*(1-ratio))/100,"d"->(pt1["d"]*ratio+pt2["d"]*(
 \[CurlyPhi]l=95;(*\:673a\:5668\:9732\:70b9*)
 
 psy@@FindRoot[{dp[\[CurlyPhi]l/100Pqb[t]]==df,d==df}/.
-Solve[{(hf-pt2["h"])/(df-pt2["d"])==\[CurlyEpsilon]/1000,htd[t,df]==hf},{hf,df}][[1]],
-{{t,pt2["t"]},{d,pt2["d"]}}]
+NSolve[{(hf-pt2["h"])/(df-pt2["d"])==\[CurlyEpsilon]/1000,htd[t,df]==hf},{hf,df}][[1]],
+	{{t,pt2["t"]},{d,pt2["d"]}}]
