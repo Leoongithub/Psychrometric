@@ -57,10 +57,10 @@ regfun=Function[{d,h},0<d<dp[Pqb[InverseFunction[htd[#,d]&][h+d Tan[68\[Degree]]
 trans[{d_,h_}]:={d,h-d Tan[68\[Degree]]}
 
 psychrometric=Show[
-	ParametricPlot[Table[trans@{d,htd[t,d]},{t,-30,70,5}],{d,-50,50},RegionFunction->regfun,PlotStyle->Blue],
-	ParametricPlot[Table[trans@{d,h},{h,-30,220,10}],{d,-30,50},RegionFunction->regfun,PlotStyle->Blue],
-	ParametricPlot[Table[{d,y},{d,0,70,5}],{y,-30,80},RegionFunction->regfun,PlotStyle->Blue],
-	ParametricPlot[Table[trans@{#,htd[t,#]}&@dp[Pqb[t]*\[CurlyPhi]],{\[CurlyPhi],0.05,1,0.05}],{t,-30,75},PlotStyle->Blue],
+	ParametricPlot[Table[trans@{d,htd[t,d]},{t,-30,70,5}],{d,-50,50},RegionFunction->regfun,PlotStyle->RGBColor[0.37,0.51,0.71]],(*\:7b49\:6e29\:7ebf*)
+	ParametricPlot[Table[trans@{d,h},{h,-30,220,10}],{d,-30,50},RegionFunction->regfun,PlotStyle->RGBColor[0.88,0.61,0.14]],(*\:7b49\:7113\:7ebf*)
+	ParametricPlot[Table[{d,y},{d,0,70,5}],{y,-30,80},RegionFunction->regfun,PlotStyle->RGBColor[0.56,0.69,0.19]],(*\:7b49\:542b\:6e7f\:91cf\:7ebf*)
+	ParametricPlot[Table[trans@{#,htd[t,#]}&@dp[Pqb[t]*\[CurlyPhi]],{\[CurlyPhi],0.05,1,0.05}],{t,-30,75},PlotStyle->RGBColor[0.53,0.47,0.70]],(*\:7b49\:76f8\:5bf9\:6e7f\:5ea6\:7ebf*)
 	PlotRange->plotrange,AspectRatio->1];
 
 
